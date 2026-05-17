@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+@theme {
+  --font-cinzel: "Cinzel", serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-garamond: "Cormorant Garamond", serif;
+  
+  --color-brand-bordeaux: #7A1E1E;
+  --color-brand-brown: #2B1D13;
+  --color-brand-cream: #F7F2E8;
+  --color-brand-cream-dark: #EDE5D0;
+  --color-brand-gold: #C4A440;
+  --color-brand-footer: #0F0A05;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-brand-cream text-brand-brown font-garamond;
+  }
+  
+  h1, h2, h3 {
+    @apply font-playfair;
+  }
+}
+
+.text-cinzel { font-family: var(--font-cinzel); }
+.text-playfair { font-family: var(--font-playfair); }
+.text-garamond { font-family: var(--font-garamond); }
+
+.kraft-texture {
+  background-color: #d2b48c;
+  background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
+}
+
+.hide-shop-button {
+  display: none !important;
+}
