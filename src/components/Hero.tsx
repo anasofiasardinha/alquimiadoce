@@ -24,8 +24,16 @@ export const Hero: React.FC = () => {
         >
           <img src="/images/AlquimiaDoce_logo.svg" alt="Alquimia Doce" className="h-16 md:h-24 lg:h-28 mb-4 invert" />
           
-          <p className="font-cinzel text-brand-gold text-sm md:text-lg tracking-[0.4em] uppercase mb-12 opacity-80">
+          <p className="font-cinzel text-brand-gold text-sm md:text-lg tracking-[0.4em] uppercase mb-8 opacity-80">
             Doces com Intenção
+          </p>
+
+          <div className="mb-12"></div>
+
+          <p className="font-garamond text-brand-gold/80 text-base md:text-xl italic leading-relaxed mb-12 max-w-lg">
+            Fruta desidratada, chocolate negro 70%<br />
+            e massa de amêndoa.<br />
+            Feito à mão, em pequenos lotes.
           </p>
 
           <a 
