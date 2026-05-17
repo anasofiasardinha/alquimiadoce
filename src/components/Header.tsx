@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Menu, X, Instagram } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface HeaderProps {
   onCartClick: () => void;
@@ -7,6 +9,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -15,12 +18,9 @@ export const Header: React.FC<HeaderProps> = () => {
   }, []);
 
   const menuItems = [
-    { label: 'Início', href: '#hero' },
     { label: 'Ouro', href: '#ouro' },
     { label: 'Transmutação', href: '#transmutacao' },
     { label: 'Essência', href: '#essencia' },
-    { label: 'Origem', href: '#origem' },
-    { label: 'Encontrar-nos', href: '#contacto' },
   ];
 
   return (
@@ -31,14 +31,7 @@ export const Header: React.FC<HeaderProps> = () => {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
         <a href="#hero" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 border border-brand-bordeaux rounded-full flex items-center justify-center text-brand-bordeaux font-cinzel font-bold text-xl transition-all duration-300 group-hover:bg-brand-bordeaux group-hover:text-white">
-            A
-          </div>
-          <div className="flex flex-col">
-            <span className="font-cinzel font-bold text-lg md:text-xl tracking-widest text-brand-bordeaux uppercase leading-none">
-              Alquimia Doce
-            </span>
-          </div>
+          <img src="/images/AD_logo.svg" alt="Alquimia Doce" className="h-10 md:h-12" />
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -53,16 +46,84 @@ export const Header: React.FC<HeaderProps> = () => {
           ))}
         </nav>
 
-        {/* Purchase button hidden but code kept */}
-        <a 
-          href="https://wa.me/351939320103" 
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:block py-2 px-6 border border-brand-bordeaux text-brand-bordeaux font-cinzel text-[10px] tracking-widest uppercase hover:bg-brand-bordeaux hover:text-white transition-all duration-300"
+        {/* Social icons */}
+        <div className="hidden md:flex items-center gap-4">
+          <a 
+            href="https://wa.me/351939320103" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-brand-brown/70 hover:text-brand-bordeaux transition-colors duration-300"
+            aria-label="WhatsApp"
+          >
+            <WhatsAppIcon size={20} />
+          </a>
+          <a 
+            href="https://instagram.com/alquimiadoce.artesanal" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-brand-brown/70 hover:text-brand-bordeaux transition-colors duration-300"
+            aria-label="Instagram"
+          >
+            <Instagram size={20} />
+          </a>
+        </div>
+
+        {/* Mobile hamburger */}
+        <button 
+          className="md:hidden p-2 text-brand-brown"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Menu"
         >
-          Encomendar
-        </a>
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.nav
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden overflow-hidden bg-brand-cream/95 backdrop-blur-md border-t border-brand-brown/5"
+          >
+            <div className="flex flex-col items-center py-6 gap-5">
+              {menuItems.map((item) => (
+                <a 
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="font-garamond text-sm uppercase tracking-widest text-brand-brown/70 hover:text-brand-bordeaux transition-colors duration-300"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <div className="flex items-center gap-6 mt-4">
+                <a 
+                  href="https://wa.me/351939320103" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 text-brand-brown/70 hover:text-brand-bordeaux transition-colors duration-300"
+                  aria-label="WhatsApp"
+                >
+                  <WhatsAppIcon size={22} />
+                </a>
+                <a 
+                  href="https://instagram.com/alquimiadoce.artesanal" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 text-brand-brown/70 hover:text-brand-bordeaux transition-colors duration-300"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={22} />
+                </a>
+              </div>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

@@ -7,10 +7,9 @@ export const Hero: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/input_file_2.png" 
+          src="/images/ouro-product.jpeg" 
           alt="Bombons Ouro no tabuleiro" 
           className="w-full h-full object-cover brightness-50"
-          referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-brown/40 via-brand-brown/60 to-brand-brown/80" />
       </div>
@@ -23,14 +22,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="flex flex-col items-center"
         >
-          {/* Monogram */}
-          <div className="w-20 h-20 border-2 border-brand-gold rounded-full flex items-center justify-center mb-8">
-            <span className="font-cinzel text-brand-gold text-4xl font-bold">A</span>
-          </div>
-
-          <h1 className="font-cinzel font-bold text-4xl md:text-6xl lg:text-7xl tracking-[0.25em] text-brand-cream uppercase mb-4">
-            Alquimia Doce
-          </h1>
+          <img src="/images/AlquimiaDoce_logo.svg" alt="Alquimia Doce" className="h-16 md:h-24 lg:h-28 mb-4 invert" />
           
           <p className="font-cinzel text-brand-gold text-sm md:text-lg tracking-[0.4em] uppercase mb-12 opacity-80">
             Doces com Intenção

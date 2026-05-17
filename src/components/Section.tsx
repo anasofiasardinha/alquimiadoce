@@ -104,11 +104,10 @@ export const Section: React.FC<SectionProps> = ({
 
           {/* Images (PC: Horizontal Gallery / Mobile: Carousel) */}
           <div className="w-full">
-            {/* Desktop Gallery: 3-4 images in a row */}
+            {/* Desktop Gallery */}
             <div className="hidden lg:grid grid-cols-2 gap-6 max-w-4xl mx-auto">
               {images.map((img, i) => {
-                const isProduct = i === 1;
-                const aspectClass = isProduct && (id === 'essencia' || id === 'transmutacao') ? 'aspect-[4/3]' : 'aspect-[3/4]';
+                const isWideProduct = i === 1 && (id === 'essencia' || id === 'transmutacao');
                 return (
                   <motion.div 
                     key={i}
@@ -116,12 +115,12 @@ export const Section: React.FC<SectionProps> = ({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.15 }}
-                    className={`${aspectClass} overflow-hidden group shadow-2xl shadow-black/20 cursor-pointer`}
+                    className={`${isWideProduct ? 'aspect-[16/9] col-span-2' : 'aspect-square'} overflow-hidden group shadow-2xl shadow-black/20 cursor-pointer`}
                     onClick={() => setLightboxImg(img)}
                   >
                     <img 
                       src={img} 
-                      className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-110 brightness-90 saturate-[0.8]" 
+                      className={`w-full h-full transition-transform duration-1000 group-hover:scale-110 brightness-90 saturate-[0.8] ${isWideProduct ? 'object-contain' : 'object-cover'}`}
                       alt={title}
                     />
                   </motion.div>
@@ -132,11 +131,10 @@ export const Section: React.FC<SectionProps> = ({
             {/* Mobile Carousel (Horizontal Scroll) */}
             <div className="flex lg:hidden overflow-x-auto snap-x snap-mandatory gap-6 pb-12 px-4 no-scrollbar">
               {images.map((img, i) => {
-                const isProduct = i === 1;
-                const aspectClass = isProduct && (id === 'essencia' || id === 'transmutacao') ? 'aspect-[4/3]' : 'aspect-[3/4]';
+                const isWideProduct = i === 1 && (id === 'essencia' || id === 'transmutacao');
                 return (
-                  <div key={i} className={`flex-shrink-0 w-[75vw] ${aspectClass} snap-center shadow-xl shadow-black/10 cursor-pointer`} onClick={() => setLightboxImg(img)}>
-                    <img src={img} className="w-full h-full object-contain brightness-90 saturate-[0.8]" alt={title} />
+                  <div key={i} className={`flex-shrink-0 ${isWideProduct ? 'w-[90vw] aspect-[16/9]' : 'w-[75vw] aspect-square'} snap-center shadow-xl shadow-black/10 cursor-pointer`} onClick={() => setLightboxImg(img)}>
+                    <img src={img} className="w-full h-full object-cover brightness-90 saturate-[0.8]" alt={title} />
                   </div>
                 );
               })}

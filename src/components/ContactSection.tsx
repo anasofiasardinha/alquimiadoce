@@ -1,5 +1,6 @@
 import React from 'react';
-import { Instagram, Phone } from 'lucide-react';
+import { Instagram } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { motion } from 'motion/react';
 
 export const ContactSection: React.FC = () => {
@@ -24,7 +25,7 @@ export const ContactSection: React.FC = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-4 px-12 py-5 bg-brand-bordeaux text-brand-cream font-cinzel text-xs tracking-widest uppercase hover:bg-brand-bordeaux/90 transition-all duration-300 w-full md:w-auto"
             >
-              <Phone size={16} />
+              <WhatsAppIcon size={16} />
               WhatsApp
             </a>
             <a 
@@ -36,15 +37,6 @@ export const ContactSection: React.FC = () => {
               <Instagram size={16} />
               Instagram
             </a>
-          </div>
-
-          <div className="mt-24 space-y-2">
-            <p className="font-cinzel text-[10px] tracking-[0.4em] uppercase opacity-30">
-              Alquimia Doce
-            </p>
-            <p className="font-garamond italic text-xs tracking-widest opacity-20">
-              Doces com Intenção · Amadora, Portugal · © 2026
-            </p>
           </div>
         </motion.div>
       </div>
